@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/login.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Ankit Mavani,Rutvik Kukadiya,Neel Nakarani" /> -->
+
+    <title>Ugam shop</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../assets/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Ugam shop</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" onclick="signout()" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../Dashboard/dashboard.html">
+                                <span data-feather="home"></span> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="add_product.html">
+                                <span data-feather="file"></span> Add Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Manage_product.html">
+                                <span data-feather="shopping-cart"></span> Manage Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Category/category.html">
+                                <span data-feather="users"></span> Category
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Brand.html">
+                                <span data-feather="bar-chart-2"></span> Brand
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Banner.html">
+                                <span data-feather="layers"></span> Banner
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Area.html">
+                                <span data-feather="layers"></span> Area
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Order_data/complete_order.html">
+                                <span data-feather="layers"></span> Complete Order
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Delivery_man/delivery_man.html">
+                                <span data-feather="layers"></span> Add delivery Man
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Customer_data/Customer_user.html">
+                                <span data-feather="layers"></span> Customer Data
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../send_notification.html">
+                                <span data-feather="layers"></span> send Notification
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../layout.html">
+                                <span data-feather="layers"></span> Layout set
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" style="background-color: #F1F1F1;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-5">
+                <div style="box-shadow: 0 0 20px  #dcdcdc;" class="p-5 border bg-white">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Products Details :</h1>
+
+                    </div>
+                    <div class="row border-bottom">
+                        <div id="a" class="col-6">
+
+                        </div>
+                        <div id="b" class="col-6">
+
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-4 h6">
+                            Product Details:
+                        </div>
+                        <div id="detail" class="col-8 ">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-4 h6">
+                            Product Images:
+                        </div>
+                        <div class="col-7 ml-auto text-right">
+                            <img id="img" class="w-75" src="">
+                        </div>
+                    </div>
+                    <div class="h4">
+                        Color Images
+                    </div>
+
+                    <div id="data"></div>
+
+
+            </main>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.slim.min.js"><\/script>')
+        </script>
+        <script src="../../assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="../js/show.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Ankit Mavani,Rutvik Kukadiya,Neel Nakarani" /> -->
+
+    <title>Ugam shop</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet" />
+</head>
+
+<body class="text-center">
+    <main role="main" style="background-color: #f1f1f1;" class="col-md-10 mt-5 ml-sm-auto col-lg-4 mx-auto px-md-4 p-5">
+        <div style="box-shadow: 0 0 20px #dcdcdc;" class="p-5 border bg-white">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Log in :</h1>
+                <!-- <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    </div>
+                </div> -->
+            </div>
+            <div class="row mt-4">
+                <div class="h6 name_input col-auto">
+                    email :
+                </div>
+                <div class="col-12">
+                    <input type="email" id="email" class="form-control" placeholder="email" />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="h6 name_input col-auto">
+                    password :
+                </div>
+                <div class="col-12">
+                    <input type="password" id="password" class="form-control" placeholder="password" />
+                </div>
+            </div>
+            <div class="mt-5 d-table ml-auto mr-auto">
+                <button type="button" class="btn btn-primary" id="sign_btn">
+      sign-in
+    </button>
+            </div>
+    </main>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+
+<script src="js/firebase.js"></script>
+<script src="js/index.js"></script>
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/login.js"></script>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Ankit Mavani,Rutvik Kukadiya,Neel Nakarani" /> -->
+
+    <title>Ugam shop</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../../assets/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Ugam shop</a
+      >
+      <button
+        class="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <input
+        class="form-control form-control-dark w-100"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" onclick="signout()" href="#">Sign out</a>
+        </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../Dashboard/dashboard.html">
+                                <span data-feather="home"></span> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="add_product.html">
+                                <span data-feather="file"></span> Add Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Manage_product.html">
+                                <span data-feather="shopping-cart"></span> Manage Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Category/category.html">
+                                <span data-feather="users"></span> Category
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Brand.html">
+                                <span data-feather="bar-chart-2"></span> Brand
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Banner.html">
+                                <span data-feather="layers"></span> Banner
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Area.html">
+                                <span data-feather="layers"></span> Area
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Order_data/complete_order.html">
+                                <span data-feather="layers"></span> Complete Order
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Delivery_man/delivery_man.html">
+                                <span data-feather="layers"></span> Add delivery Man
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Customer_data/Customer_user.html">
+                                <span data-feather="layers"></span> Customer Data
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../send_notification.html">
+                                <span data-feather="layers"></span> send Notification
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../layout.html">
+                                <span data-feather="layers"></span> Layout set
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" style="background-color: #f1f1f1;" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-5">
+                <div style="box-shadow: 0 0 20px #dcdcdc;" class="p-5 border bg-white">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Add New Product :</h1>
+                        <!-- <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <button type="button" class="btn btn-primary">Primary</button>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Product name :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_name" class="form-control" placeholder="Name" />
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Product Short details :
+                        </div>
+                        <div class="col">
+                            <input type="text"  class="form-control" placeholder="Name" />
+                        </div>
+                    </div> -->
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Product Full Details :
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" id="product_detail" placeholder="Enter text here..." rows="3"></textarea>
+                            <div class="row">
+                                <button type="button" id="data_detail" class="ml-3 mt-3 btn btn-success">Upload</button>
+                                <button type="button" id="data_detail_remove" class="ml-3 mt-3 btn btn-danger">Remove</button>
+                            </div>
+                            <div id="detail" class="col-8 mt-3">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-5">
+                        <div class="col-4 h6">
+                            Product Details:
+                        </div>
+                        
+                    </div> -->
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            MRP :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_MRP" class="form-control" placeholder="MRP ex. 24" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Sale price :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_sale_price" class="form-control" placeholder="sale price ex.208" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            CGST (in %)
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_CGST" class="form-control" placeholder="CGST on sale price. Example. 5, 18 " />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            SGST (in %)
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_SGST" class="form-control" placeholder="CGST on sale price. Example. 5, 18 " />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            IGST (in %)
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_IGST" class="form-control" placeholder="IGST on sale price. Example. 5, 18 " />
+                        </div>
+                    </div>
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Whole Sale Price :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_total_price" class="form-control" placeholder="Single Product Price without Tax in Whole sale" />
+                        </div>
+                    </div> -->
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Color :
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="use , for multiple color. Example red, yellow, blue." />
+                        </div>
+                    </div> -->
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Weight :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_weight" class="form-control" placeholder="Ex. 200 gm, 1 kg" />
+                        </div>
+                    </div> -->
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            set show :
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="sel1">
+                  <option>Select</option>
+                  <option>show most viewable</option>
+                </select>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Stock :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_stock" class="form-control" placeholder="New Stock Quantity ex. 200, 500" />
+                        </div>
+                    </div> -->
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Return time :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_return_time" class="form-control" placeholder="Return time ex.1 day,2 day" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Delivery time :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_delivery_time" class="form-control" placeholder="delivery time ex.1 day,5 day" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Advance payment :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_advance_payment" class="form-control" placeholder="Advance payment ex.0 ,30 " />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            selling :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="tsell" class="form-control" placeholder="Advance payment ex.0 ,30 " />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Warrenty/garrenty :
+                        </div>
+                        <div class="col mx-auto">
+
+                            <label class="px-3">
+                                  <input class="with-gap" name="group1" value="1" type="radio" id="warrenty" />
+                                  <span>Warrenty</span>
+                                </label>
+
+
+                            <label class="px-3">
+                                  <input class="with-gap" value="0" name="group1" type="radio" id="garrenty"/>
+                                  <span>garrenty</span>
+                                </label>
+
+                        </div>
+
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Warrenty/garrenty :
+                        </div>
+                        <div class="col">
+                            <input type="text" id="product_g" class="form-control" placeholder="garrenty ex. 6 month, 1 year" />
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Brand :
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="_data">
+               
+              </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Select Category :
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="_category">
+              </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Select sub Category :
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="sub_category">
+              </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-4" id="img1" style="display: block;">
+                        <div class="h6 name_input col-2">
+                            Main Image:
+                        </div>
+                        <div class="col">
+                            <input type="file" id="main_image" name="myfile" multiple />
+                            <!-- <button type="button" id="upload_main_image" class="ml-3 btn btn-success">Upload</button> -->
+                            <!-- <button type="button" class="ml-2 btn btn-danger">Remove</button> -->
+                            <div class="mt-4 progress">
+                                <div class="progress-bar" id="progress" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <img class="border" id="img" style="width: auto; height: 100px;" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            Product Images :
+                        </div>
+                        <div class="col">
+                            <button type="button" id="add-more" onclick="" class="btn btn-primary">
+                                
+                + Add More Images
+              </button>
+                        </div>
+                    </div> -->
+                    <div class="row mt-4">
+                        <div class="h6 name_input col-2">
+                            color Image:
+                        </div>
+                        <div class="col">
+                            <input type="color" id="color" name="color" value="#ff0000">
+                        </div>
+                    </div>
+                    <div class="row mt-4" id="img1" style="display: block;">
+                        <div class="h6 name_input col-2">
+                            Images :
+                        </div>
+                        <div class="col">
+                            <input c type="file" id="image" name="myfile" multiple />
+                            <button type="button" id="upload" class="ml-3 btn btn-success">Upload</button>
+                            <button type="button" id="Remove" class="ml-3 btn btn-danger">Remove</button>
+                            <div id="img_div">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 progress">
+                        <div class="progress-bar" id="progress_bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        </div>
+                    </div>
+                    <div class=" row ">
+                        <!-- <div class="h6 ml-auto mb-4">
+                            color
+                        </div> -->
+                        <!-- <div class="p-1 bg-danger mr-auto"></div> -->
+                        <div class="row mt-4" id="image_color">
+
+                        </div>
+                    </div>
+                    <div class="mt-5 d-table ml-auto mr-auto">
+                        <button type="button" class="btn btn-primary" id="add">
+              + Add More Products
+            </button>
+                    </div>
+            </main>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script>
+            window.jQuery ||
+                document.write(
+                    '<script src="../../assets/js/vendor/jquery.slim.min.js"><\/script>'
+                );
+        </script>
+        <script src="../../assets/dist/js/bootstrap.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+        <script src="../js/add-product.js"></script>
+</body>
+
+</html>
